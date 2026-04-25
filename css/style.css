@@ -1,236 +1,277 @@
-/* Reseteo básico para quitar márgenes por defecto del navegador */
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN GLOBAL
+========================================= */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Outfit', sans-serif;
     line-height: 1.6;
+    color: var(--text-main);
+    background-color: var(--bg-white);
+    overflow-x: hidden;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 /* =========================================
-   ESTILOS DEL CORAZÓN (HEADER)
-   Aquí damos color y orientación
+   HEADER & NAVEGACIÓN
 ========================================= */
 header {
-    /* 1. COLOR */
-    background-color: #2c3e50;
-    /* Un elegante azul oscuro */
+    background-color: rgba(44, 62, 80, 0.95);
+    backdrop-filter: blur(10px);
     color: #ffffff;
-    /* Letras en color blanco */
-
-    /* 2. ORIENTACIÓN (Usando Flexbox) */
     display: flex;
-    /* Flexbox nos permite organizar los elementos */
     justify-content: space-between;
-    /* Tira el título a la izq y los enlaces a la der */
     align-items: center;
-    /* Centra los elementos verticalmente */
-
-    /* 3. ESPACIADO */
-    padding: 20px 50px;
-    /* 20px de espacio arriba/abajo y 50px a los lados */
-
-    /* 4. FIJAR AL NAVEGAR (Sticky) */
+    padding: 15px 8%;
     position: sticky;
-    /* Hace que el encabezado se "pegue" al hacer scroll */
     top: 0;
-    /* Lo pega exactamente en el tope superior (cero píxeles) */
     z-index: 1000;
-    /* Garantiza que el menú siempre esté por encima del contenido inferior */
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
 }
 
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
 
-/* =========================================
-   ESTILOS DE LA NAVEGACIÓN
-========================================= */
+.logo span {
+    color: var(--secondary-color);
+}
+
+/* Nav Desktop */
 header nav ul {
     list-style: none;
-    /* Quita los puntitos a las listas */
     display: flex;
-    /* Pone todos los elementos en una línea horizontal */
-    gap: 25px;
-    /* Deja un espacio de 25px entre cada enlace */
+    gap: 35px;
 }
 
 header nav a {
     color: #ffffff;
     text-decoration: none;
-    /* Quita la línea de subrayado típica de los enlaces */
-    font-weight: 600;
-    /* Hace la letra más gordita/negrita */
-    transition: color 0.3s;
-    /* Añade una animación suave */
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    transition: var(--transition);
 }
 
-/* Efecto al pasar el cursor (mouse) sobre el enlace */
+header nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: var(--transition);
+}
+
 header nav a:hover {
-    color: #3498db;
-    /* Cambia a un azul más claro */
+    color: var(--secondary-color);
+}
+
+header nav a:hover::after {
+    width: 100%;
+}
+
+/* Botón Menú Hamburguesa */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+/* Animación Hamburguesa */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 /* =========================================
-   SECCIÓN: SOBRE MÍ
+   SECCIONES GENERALES
 ========================================= */
-#sobre-mi {
-    background-color: #f9f9f9;
-    /* Un gris extra claro para diferenciar esta sección del resto */
-    padding: 80px 20px;
-    /* Mucho espacio arriba/abajo (80px) para que el diseño "respire", y 20px a los lados */
-    text-align: center;
-    /* Centramos todo el contenido horizontalmente */
+section {
+    padding: 100px 8%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-#sobre-mi h2 {
-    color: #2c3e50;
-    /* Reutilizamos el azul oscuro del header para mantener una paleta coherente */
-    font-size: 2.5rem;
-    /* Un tamaño de letra grande e imponente para el título */
-    margin-bottom: 25px;
-    /* Empuja el párrafo hacia abajo separándolo del título */
+h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    color: var(--primary-color);
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--secondary-color);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* SOBRE MÍ */
+#sobre-mi {
+    background-color: var(--bg-light);
+    max-width: 100%;
 }
 
 #sobre-mi p {
-    color: #555555;
-    /* Un gris oscuro es más fácil de leer en la pantalla que un negro puro absoluto */
-    font-size: 1.15rem;
-    /* Letra un poquito más grande del estándar */
+    font-size: 1.2rem;
+    color: var(--text-muted);
     max-width: 800px;
-    /* Evita que el párrafo se estire de extremo a extremo en pantallas muy anchas */
     margin: 0 auto;
-    /* TRUCO: este margen centrará horizontalmente el "bloque" del párrafo en la pantalla */
     line-height: 1.8;
-    /* Separa un poco más cada línea de texto para que sea súper legible */
-}
-
-/* =========================================
-   SECCIÓN: TECNOLOGÍAS
-========================================= */
-#tecnologias {
-    padding: 80px 20px;
     text-align: center;
-    background-color: #ffffff;
-    /* Fondo blanco para alternar y no aburrir a la vista */
 }
 
-#tecnologias h2 {
-    color: #2c3e50;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
+#sobre-mi strong {
+    color: var(--primary-color);
 }
 
+/* TECNOLOGÍAS */
 #tecnologias ul {
     list-style: none;
-    /* Quitamos los puntos de la lista */
     display: flex;
-    /* Flexbox para poner las tecnologías en fila */
     justify-content: center;
-    /* Las centramos */
-    gap: 15px;
-    /* Espacio entre cada tecnología */
+    gap: 20px;
     flex-wrap: wrap;
-    /* Permite que las cajitas bajen de línea si la pantalla es de celular */
+    margin-top: 20px;
 }
 
 #tecnologias li {
-    background-color: #3498db;
-    /* Azul claro estilo "píldora" */
+    background: linear-gradient(135deg, var(--secondary-color), #2980b9);
     color: #ffffff;
-    padding: 12px 25px;
-    border-radius: 25px;
-    /* Bordes muy redondeados */
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Ligera sombra para darle profundidad 3D */
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    transition: var(--transition);
 }
 
-/* =========================================
-   SECCIÓN: PROYECTOS (ESTILO TARJETAS)
-========================================= */
+#tecnologias li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+}
+
+/* PROYECTOS */
 #proyectos {
-    padding: 80px 20px;
-    background-color: #f9f9f9;
-    /* Volvemos al gris extra claro para resaltar */
-    text-align: center;
+    background-color: var(--bg-light);
+    max-width: 100%;
 }
 
-#proyectos h2 {
-    color: #2c3e50;
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#proyectos>p {
-    color: #555555;
-    margin-bottom: 50px;
-    /* Dale espacio a las tarjetas que vienen debajo */
-}
-
-/* Estilos para CADA proyecto individual (Article) */
 #proyectos article {
-    background-color: #ffffff;
-    border: 1px solid #e1e1e1;
-    /* Borde súper sutil */
-    border-radius: 8px;
-    /* Bordes un poquito redondeados */
-    padding: 30px;
-    margin: 15px;
-    display: inline-block;
-    /* Permite colocar una tarjeta al lado de la otra */
-    width: 320px;
-    /* Tamaño fijo de las tarjetas */
-    vertical-align: top;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    /* Sombra elegante de fondo */
-    transition: transform 0.3s, box-shadow 0.3s;
-    /* Animación para el Hover */
+    background-color: var(--bg-white);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03);
+    text-align: left;
 }
 
-/* El efecto al poner el mouse sobre la tarjeta del proyecto */
 #proyectos article:hover {
-    transform: translateY(-8px);
-    /* La tarjeta "salta" o se eleva 8 píxeles */
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
-    /* La sombra se hace más grande al estar "elevada" */
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 #proyectos article h3 {
-    color: #2c3e50;
+    font-size: 1.5rem;
     margin-bottom: 15px;
+    color: var(--primary-color);
 }
 
 #proyectos article p {
-    color: #666666;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* =========================================
-   SECCIÓN: CONTACTO
-========================================= */
-#contacto {
-    padding: 80px 20px;
-    background-color: #ffffff;
-    text-align: center;
-}
-
-#contacto h2 {
-    color: #2c3e50;
-    font-size: 2.5rem;
+    color: var(--text-muted);
     margin-bottom: 25px;
 }
 
+#proyectos article a {
+    display: inline-block;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+#proyectos article a:hover {
+    letter-spacing: 2px;
+}
+
+/* CONTACTO */
 #contacto address {
     font-style: normal;
-    /* "address" pone el texto en cursiva por defecto. Esto lo arregla. */
-    color: #555555;
+    text-align: center;
 }
 
 #contacto address p {
-    margin-bottom: 30px;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: var(--text-muted);
 }
 
 #contacto ul {
@@ -241,33 +282,101 @@ header nav a:hover {
     flex-wrap: wrap;
 }
 
-/* Convertimos los enlaces de contacto (email y linkedin) en botones */
 #contacto a {
     display: inline-block;
-    padding: 12px 30px;
-    background-color: #2c3e50;
-    /* Botones de color oscuro elegantes */
+    padding: 15px 35px;
+    background-color: var(--primary-color);
     color: #ffffff;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 #contacto a:hover {
-    background-color: #3498db;
-    /* Cambian de color al seleccionarlos */
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+}
+
+/* FOOTER */
+footer {
+    background-color: var(--primary-color);
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 /* =========================================
-   FOOTER (PIE DE PÁGINA)
+   MEDIA QUERIES (RESPONSIVO)
 ========================================= */
-footer {
-    background-color: #1a252f;
-    /* Un gris sumamente oscuro/casi negro (pero sin ser negro feo) */
-    color: #bdc3c7;
-    /* Letra gris clarita */
-    text-align: center;
-    padding: 25px 20px;
-    font-size: 0.9rem;
+
+@media (max-width: 992px) {
+    header {
+        padding: 15px 5%;
+    }
+    
+    h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    header nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: var(--primary-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    header nav.active {
+        right: 0;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    header nav a {
+        font-size: 1.5rem;
+    }
+
+    section {
+        padding: 80px 5%;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    #tecnologias li {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+    
+    #proyectos article {
+        padding: 30px 20px;
+    }
 }
