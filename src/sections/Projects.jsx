@@ -3,9 +3,9 @@ import FadeIn from "../components/FadeIn"
 const projects = [
   {
     name: "Ampara Seguros",
-    description: "Sitio web multipágina para aseguradora con 7 secciones informativas. Incluye menú responsive, animaciones on-scroll y diseño mobile-first.",
-    stack: ["HTML5", "CSS3", "JavaScript"],
-    link: "#",
+    description: "Sitio web para empresa de seguros con enfoque moderno y humano. Incluye páginas de inicio, quiénes somos, seguros de vida, daños y auto, y catálogo de planes.",
+    stack: ["React", "TypeScript", "Vite", "TailwindCSS"],
+    link: "https://alvarojavier1.github.io/Proyecto-Ampara/",
   },
 ]
 
