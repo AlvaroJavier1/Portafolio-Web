@@ -7,6 +7,8 @@ const skills = [
   "React",
   "Tailwind CSS",
   "Git / GitHub",
+  "TypeScript",
+  "API REST",
 ]
 
 function Skills() {
