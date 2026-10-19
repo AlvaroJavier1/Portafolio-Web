@@ -18,4 +18,4 @@ Portafolio personal desarrollado con React, Vite, Tailwind CSS y Framer Motion. 
 
 ## 🔗 Demo en vivo
 
-[javiergarcia.vercel.app](https://javiergarcia-ten.vercel.app)
+[javiergarcia-portafolio.vercel.app](https://javiergarcia-portafolio.vercel.app)
