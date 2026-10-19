@@ -16,7 +16,7 @@ function Hero() {
       <FadeIn delay={0.2}>
         <p className="text-lg text-gray-500 max-w-xl mb-10">
           Estudiante de Ingeniería en Sistemas, enfocado en Front-End.
-          Tranformo ideas en interfaces web atractivas y funcionales.
+          Transformo ideas en interfaces web atractivas y funcionales.
         </p>
       </FadeIn>
       <FadeIn delay={0.3}>
