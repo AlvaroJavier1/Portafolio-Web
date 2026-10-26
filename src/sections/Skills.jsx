@@ -1,14 +1,35 @@
 import FadeIn from "../components/FadeIn"
 
-const skills = [
-  "HTML5",
-  "CSS3",
-  "JavaScript",
-  "React",
-  "Tailwind CSS",
-  "Git / GitHub",
-  "TypeScript",
-  "API REST",
+const skillsGroups = [
+  {
+    title: "Frontend",
+    skills: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Consumo de APIs REST",
+    ],
+  },
+  {
+    title: "Herramientas",
+    skills: [
+      "Git",
+      "GitHub",
+      "Vite",
+      "Vercel",
+    ],
+  },
+  /*{
+    title: "Backend",
+    skills: [
+      "Node.js",
+      "Express",
+      "API REST",
+    ],
+  }*/
 ]
 
 function Skills() {
@@ -23,18 +44,25 @@ function Skills() {
             Tecnologías que manejo.
           </h2>
           </FadeIn>
-          <FadeIn delay={0.2}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {skills.map((skill) => (
-              <div
-                key={skill}
-                className="bg-white rounded-2xl p-6 border border-gray-100 font-semibold text-gray-900"
-              >
-                {skill}
-              </div>
+          <div className="flex flex-col gap-12">
+            {skillsGroups.map((group, index) => (
+              <FadeIn key={group.title} delay={index * 0.1}>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  {group.title}
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {group.skills.map((skill) => (
+                    <div
+                      key={skill}
+                      className="bg-white rounded-2xl p-6 border border-gray-100 font-semibold text-gray-900"
+                    >
+                      {skill}
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
             ))}
           </div>
-          </FadeIn>
         </div>
     </section>
   )
